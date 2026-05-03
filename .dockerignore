@@ -1,0 +1,40 @@
+# Dependencies
+__pycache__
+*.pyc
+*.pyo
+node_modules
+.next
+
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Tests (not needed in production image)
+backend/tests/
+pytest.ini
+pyproject.toml
+.pytest_cache
+
+# Docs
+*.md
+!README.md
+LICENSE
+
+# Logs and data (created at runtime)
+cost_log.json
+*.log
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose*.yml
