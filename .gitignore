@@ -216,3 +216,12 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Node.js / Next.js
+node_modules/
+.next/
+out/
+.turbo/
+
+# TokenLens data
+cost_log.json
