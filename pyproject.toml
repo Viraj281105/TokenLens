@@ -1,0 +1,15 @@
+[tool.pytest.ini_options]
+testpaths = ["backend/tests"]
+asyncio_mode = "auto"
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "--tb=short -q"
+
+[tool.coverage.run]
+source = ["backend"]
+omit = ["backend/tests/*", "backend/__init__.py"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 80
