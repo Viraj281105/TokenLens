@@ -18,7 +18,9 @@ jobs:
         run: |
           pip install fastapi uvicorn pydantic httpx pytest pytest-asyncio pytest-cov
           pip install tiktoken scikit-learn numpy aiofiles slowapi python-multipart
-          pip install faiss-cpu sentence-transformers torch --index-url https://download.pytorch.org/whl/cpu
+          pip install faiss-cpu
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install sentence-transformers
       - name: Run tests
         env:
           GEMINI_API_KEY: test123
