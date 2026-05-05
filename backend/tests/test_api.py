@@ -36,11 +36,11 @@ async def client():
         
         # Initialize the global components before tests run
         init_components(
-            compressor=PromptCompressor(),
-            cache=SemanticCache(),
-            model_router=ModelRouter(),
-            cost_tracker=CostTracker(),
-            gemini_client=GeminiClient()
+            _compressor=PromptCompressor(),
+            _cache=SemanticCache(),
+            _router=ModelRouter(),
+            _tracker=CostTracker(),
+            _gemini=GeminiClient()
         )
         
         transport = ASGITransport(app=app)
