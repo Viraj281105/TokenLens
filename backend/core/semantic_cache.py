@@ -117,12 +117,12 @@ class SemanticCache:
                     return CacheResult(
                         cache_hit=True,
                         cached_response=entry.response,
-                        similarity_score=round(best_similarity, 4),
+                        similarity_score=max(0.0, round(best_similarity, 4)),
                         tokens_saved=original_tokens,
                     )
 
             logger.debug("Cache MISS: best_similarity=%.4f", best_similarity)
-            return CacheResult(cache_hit=False, similarity_score=round(best_similarity, 4))
+            return CacheResult(cache_hit=False, similarity_score=max(0.0, round(best_similarity, 4)))
 
     def set(self, prompt: str, response: str, tokens_saved: int = 0) -> None:
         """
