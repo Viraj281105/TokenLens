@@ -157,7 +157,7 @@ export default function DashboardPage() {
       <footer className="border-t border-zinc-800/50 py-6 mt-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between text-xs text-zinc-500 gap-2">
           <p>
-            © 2025 TokenLens — Built for{" "}
+            © 2026 TokenLens — Built for{" "}
             <strong className="text-zinc-400">Google PromptWars</strong>
           </p>
           <p className="flex items-center gap-1.5">

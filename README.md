@@ -75,14 +75,12 @@ graph TB
 
 ---
 
-## ⚙️ Optimization Pipeline
+## ⚙️ How It Works
 
-| Layer                 | Technology           | Function                                | Impact             |
-| --------------------- | -------------------- | --------------------------------------- | ------------------ |
-| **1. Compression**    | TF-IDF + tiktoken    | Removes filler, keeps high-value tokens | 25–40% reduction   |
-| **2. Semantic Cache** | FAISS + MiniLM       | Reuses responses via similarity ≥0.92   | Up to 100% savings |
-| **3. Model Router**   | Heuristic classifier | Routes to Flash vs Pro                  | 10–17× cheaper     |
-| **4. Cost Tracker**   | JSON + analytics     | Tracks token usage & savings            | Full visibility    |
+1. **Layer 1**: Saves 25-40% tokens via TF-IDF compression.
+2. **Layer 2**: Returns cached responses instantly (0 API cost) for similar queries.
+3. **Layer 3**: Routes SIMPLE/MEDIUM to gemini-1.5-flash (17x cheaper than Pro).
+4. **Layer 4**: Tracks every dollar saved with per-session analytics.
 
 ---
 
@@ -143,6 +141,8 @@ npm run dev
 | `/api/history`  | GET    | Request logs               |
 | `/api/health`   | GET    | Health check               |
 | `/docs`         | GET    | Swagger UI                 |
+
+> 💡 **Note:** The API is completely self-documented. You can explore and test all endpoints interactively via the Swagger UI at `/docs`.
 
 ---
 
