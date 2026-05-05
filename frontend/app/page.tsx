@@ -59,11 +59,16 @@ export default function DashboardPage() {
       </header>
 
       {/* ── Main Content ────────────────────────────────────────── */}
-      <main id="main-content" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+      <main id="main-content" className="page-load" style={{minHeight:'100vh', background:'#0f1117'}} >
         {/* Hero */}
-        <section className="text-center py-6 animate-page-load" aria-label="Hero section">
+        <section className="text-center py-6" aria-label="Hero section">
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3">
-            <span className="gradient-text-blue-purple">Cut LLM Costs</span>{" "}
+            <span style={{
+              background: 'linear-gradient(to right, #3b82f6, #a78bfa)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text'
+            }}>Cut LLM Costs</span>{" "}
             <span className="text-foreground">by up to 60%</span>
           </h2>
           <p className="text-zinc-400 max-w-2xl mx-auto leading-relaxed">
@@ -74,9 +79,8 @@ export default function DashboardPage() {
 
         {/* Pipeline Visualization */}
         <section
-          className="grid grid-cols-2 md:grid-cols-4 gap-3 animate-page-load"
+          className="grid grid-cols-2 md:grid-cols-4 gap-3"
           aria-label="Optimization pipeline layers"
-          style={{ animationDelay: '0.1s' }}
         >
           {[
             {
@@ -85,6 +89,7 @@ export default function DashboardPage() {
               desc: "TF-IDF extraction",
               colorCode: "#3b82f6",
               colorClass: "blue",
+              wrapperStyle: {background:'rgba(59,130,246,0.2)', color:'#3b82f6', borderRadius:'8px', padding:'8px'}
             },
             {
               icon: Database,
@@ -92,6 +97,7 @@ export default function DashboardPage() {
               desc: "FAISS similarity",
               colorCode: "#06b6d4",
               colorClass: "cyan",
+              wrapperStyle: {background:'rgba(6,182,212,0.2)', color:'#06b6d4', borderRadius:'8px', padding:'8px'}
             },
             {
               icon: Route,
@@ -99,6 +105,7 @@ export default function DashboardPage() {
               desc: "Model selection",
               colorCode: "#a78bfa",
               colorClass: "purple",
+              wrapperStyle: {background:'rgba(167,139,250,0.2)', color:'#a78bfa', borderRadius:'8px', padding:'8px'}
             },
             {
               icon: BarChart3,
@@ -106,6 +113,7 @@ export default function DashboardPage() {
               desc: "Cost analytics",
               colorCode: "#10b981",
               colorClass: "emerald",
+              wrapperStyle: {background:'rgba(16,185,129,0.2)', color:'#10b981', borderRadius:'8px', padding:'8px'}
             },
           ].map((layer, i, arr) => {
             const Icon = layer.icon;
@@ -113,9 +121,6 @@ export default function DashboardPage() {
               <div
                 key={layer.label}
                 className="glass-card p-4 text-center group relative hover:-translate-y-1 transition-transform"
-                style={{
-                  borderLeft: `3px solid ${layer.colorCode}`,
-                }}
               >
                 {/* Connecting arrow (CSS-only approximation for layout) */}
                 {i < arr.length - 1 && (
@@ -124,19 +129,13 @@ export default function DashboardPage() {
                 
                 {/* Pulsing dot for "active" indication demo */}
                 <span 
-                  className="absolute top-2 right-2 w-2 h-2 rounded-full animate-pulse"
+                  className="absolute top-2 right-2 w-2 h-2 rounded-full pulse-dot"
                   style={{ backgroundColor: layer.colorCode }}
                 ></span>
 
                 <div className="flex justify-center mb-2">
-                  <div
-                    className={`p-2.5 rounded-xl border transition-transform group-hover:scale-110`}
-                    style={{
-                      backgroundColor: `${layer.colorCode}20`,
-                      borderColor: `${layer.colorCode}40`,
-                    }}
-                  >
-                    <Icon className="w-5 h-5" style={{ color: layer.colorCode }} aria-hidden="true" />
+                  <div style={layer.wrapperStyle}>
+                    <Icon className="w-5 h-5" aria-hidden="true" />
                   </div>
                 </div>
                 <p className="font-semibold text-sm">{layer.label}</p>

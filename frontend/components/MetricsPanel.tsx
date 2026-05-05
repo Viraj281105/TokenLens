@@ -74,7 +74,8 @@ export default function MetricsPanel() {
       trend: stats?.avg_efficiency_score ?? 0,
       trendLabel: "efficiency",
       sparklineData: mockSparklineData1,
-      sparklineColor: "#a78bfa"
+      sparklineColor: "#a78bfa",
+      leftBorder: "3px solid #3b82f6"
     },
     {
       id: "cost-saved",
@@ -90,7 +91,8 @@ export default function MetricsPanel() {
       trend: stats?.cost_saved_usd ?? 0,
       trendLabel: "saved",
       sparklineData: mockSparklineData2,
-      sparklineColor: "#10b981"
+      sparklineColor: "#10b981",
+      leftBorder: "3px solid #10b981"
     },
     {
       id: "cache-hit-rate",
@@ -106,7 +108,8 @@ export default function MetricsPanel() {
       trend: stats?.cache_hits ?? 0,
       trendLabel: "hits",
       sparklineData: mockSparklineData3,
-      sparklineColor: "#3b82f6"
+      sparklineColor: "#3b82f6",
+      leftBorder: "3px solid #06b6d4"
     },
     {
       id: "total-requests",
@@ -122,7 +125,8 @@ export default function MetricsPanel() {
       trend: stats?.total_tokens_in ?? 0,
       trendLabel: "tokens in",
       sparklineData: mockSparklineData4,
-      sparklineColor: "#fbbf24"
+      sparklineColor: "#fbbf24",
+      leftBorder: "3px solid #a78bfa"
     },
   ];
 
@@ -135,7 +139,17 @@ export default function MetricsPanel() {
             <div
               key={card.id}
               id={card.id}
-              className={`glass-card p-5 relative overflow-hidden group hover:-translate-y-1`}
+              className={`relative overflow-hidden group hover:-translate-y-1`}
+              style={{
+                background: 'rgba(22,27,39,0.8)',
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
+                border: '1px solid rgba(59,130,246,0.15)',
+                borderLeft: card.leftBorder,
+                borderRadius: '12px',
+                padding: '1.25rem',
+                transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+              }}
               role="status"
               aria-label={`${card.label}: ${card.value}`}
             >

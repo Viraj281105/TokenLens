@@ -129,8 +129,8 @@ export default function CostChart() {
                   <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
                 </linearGradient>
                 <linearGradient id="effGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#22c55e" stopOpacity={0.3} />
-                  <stop offset="95%" stopColor="#22c55e" stopOpacity={0} />
+                  <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="#1d4ed8" stopOpacity={0} />
                 </linearGradient>
               </defs>
               <CartesianGrid
@@ -168,11 +168,11 @@ export default function CostChart() {
                 type="monotone"
                 dataKey="efficiency"
                 name="Efficiency %"
-                stroke="#22c55e"
+                stroke="#3b82f6"
                 strokeWidth={2}
                 fill="url(#effGrad)"
                 dot={false}
-                activeDot={{ r: 4, strokeWidth: 2, stroke: "#22c55e", fill: "#0f1117" }}
+                activeDot={{ r: 4, strokeWidth: 2, stroke: "#3b82f6", fill: "#0f1117" }}
                 animationDuration={1500}
                 animationEasing="ease-out"
               />

@@ -177,7 +177,16 @@ export default function ChatPlayground() {
                 id="optimize-button"
                 onClick={handleOptimize}
                 disabled={!prompt.trim() || loading}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 disabled:opacity-40 disabled:cursor-not-allowed text-sm font-medium text-white transition-all focus-ring shadow-lg shadow-blue-500/20"
+                className="flex items-center gap-2 px-4 py-2 disabled:opacity-40 disabled:cursor-not-allowed text-sm transition-all focus-ring shadow-lg shadow-blue-500/20"
+                style={{
+                  background: 'linear-gradient(to right, #3b82f6, #a78bfa)',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '8px',
+                  padding: '8px 20px',
+                  cursor: 'pointer',
+                  fontWeight: '600'
+                }}
                 aria-label="Optimize prompt"
               >
                 {loading ? (
