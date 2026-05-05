@@ -12,8 +12,14 @@ Production-grade ASGI application with:
 from __future__ import annotations
 
 import logging
+import mimetypes
 import os
 import sys
+
+# Ensure correct MIME types are registered for static files
+mimetypes.add_type('application/javascript', '.js')
+mimetypes.add_type('text/css', '.css')
+mimetypes.add_type('application/json', '.json')
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import AsyncGenerator
