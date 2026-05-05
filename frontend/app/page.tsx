@@ -89,7 +89,7 @@ export default function DashboardPage() {
               desc: "TF-IDF extraction",
               colorCode: "#3b82f6",
               colorClass: "blue",
-              wrapperStyle: {background:'rgba(59,130,246,0.2)', color:'#3b82f6', borderRadius:'8px', padding:'8px'}
+              wrapperStyle: {background:'rgba(59,130,246,0.2)',color:'#3b82f6',padding:'10px',borderRadius:'10px',display:'inline-flex'}
             },
             {
               icon: Database,
@@ -97,7 +97,7 @@ export default function DashboardPage() {
               desc: "FAISS similarity",
               colorCode: "#06b6d4",
               colorClass: "cyan",
-              wrapperStyle: {background:'rgba(6,182,212,0.2)', color:'#06b6d4', borderRadius:'8px', padding:'8px'}
+              wrapperStyle: {background:'rgba(6,182,212,0.2)',color:'#06b6d4',padding:'10px',borderRadius:'10px',display:'inline-flex'}
             },
             {
               icon: Route,
@@ -105,7 +105,7 @@ export default function DashboardPage() {
               desc: "Model selection",
               colorCode: "#a78bfa",
               colorClass: "purple",
-              wrapperStyle: {background:'rgba(167,139,250,0.2)', color:'#a78bfa', borderRadius:'8px', padding:'8px'}
+              wrapperStyle: {background:'rgba(167,139,250,0.2)',color:'#a78bfa',padding:'10px',borderRadius:'10px',display:'inline-flex'}
             },
             {
               icon: BarChart3,
@@ -113,7 +113,7 @@ export default function DashboardPage() {
               desc: "Cost analytics",
               colorCode: "#10b981",
               colorClass: "emerald",
-              wrapperStyle: {background:'rgba(16,185,129,0.2)', color:'#10b981', borderRadius:'8px', padding:'8px'}
+              wrapperStyle: {background:'rgba(16,185,129,0.2)',color:'#10b981',padding:'10px',borderRadius:'10px',display:'inline-flex'}
             },
           ].map((layer, i, arr) => {
             const Icon = layer.icon;
