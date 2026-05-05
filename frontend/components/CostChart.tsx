@@ -28,7 +28,7 @@ interface HistoryEntry {
   prompt_preview: string;
 }
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
+const API_BASE = "";
 
 export default function CostChart() {
   const [history, setHistory] = useState<HistoryEntry[]>([]);

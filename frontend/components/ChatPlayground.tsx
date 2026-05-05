@@ -27,7 +27,7 @@ interface OptimizeResult {
   session_id: string;
 }
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
+const API_BASE = "";
 
 const EXAMPLE_PROMPTS = [
   "What is machine learning? Explain the basic concepts and how it differs from traditional programming. I would like to understand the fundamentals thoroughly.",

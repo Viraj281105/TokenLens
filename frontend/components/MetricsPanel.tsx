@@ -22,7 +22,7 @@ interface Stats {
   avg_efficiency_score: number;
 }
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
+const API_BASE = "";
 
 export default function MetricsPanel() {
   const [stats, setStats] = useState<Stats | null>(null);
