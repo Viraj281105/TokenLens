@@ -21,7 +21,7 @@ jobs:
           pip install faiss-cpu
           pip install torch --index-url https://download.pytorch.org/whl/cpu
           pip install sentence-transformers
-          pip install google-generativeai google-cloud-secret-manager google-cloud-logging google-cloud-monitoring
+          pip install google-generativeai google-cloud-secret-manager google-cloud-logging google-cloud-monitoring google-genai
       - name: Run tests
         env:
           GEMINI_API_KEY: test123
