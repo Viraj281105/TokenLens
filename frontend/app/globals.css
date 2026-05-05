@@ -1,6 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
-
-/* ── TokenLens Design System ─────────────────────────────────────── */
 
 @theme inline {
   --color-background: var(--background);
@@ -19,27 +18,25 @@
 }
 
 :root {
-  --background: #09090b;
-  --foreground: #fafafa;
-  --card-bg: #18181b;
-  --card-fg: #fafafa;
-  --primary: #a78bfa;
-  --primary-fg: #09090b;
-  --muted: #27272a;
-  --muted-fg: #a1a1aa;
-  --border-color: #27272a;
-  --accent: #6d28d9;
-  --accent-fg: #fafafa;
+  --background: #0f1117;
+  --foreground: #f1f5f9;
+  --card-bg: #161b27;
+  --card-fg: #f1f5f9;
+  --primary: #3b82f6; /* Electric blue */
+  --primary-fg: #0f1117;
+  --muted: #1e293b;
+  --muted-fg: #94a3b8;
+  --border-color: rgba(59, 130, 246, 0.15); /* Subtle blue glow */
+  --accent: #a78bfa; /* Purple accent */
+  --accent-fg: #f1f5f9;
   --radius: 0.75rem;
-  --success: #22c55e;
+  
+  --success: #10b981;
   --warning: #f59e0b;
   --error: #ef4444;
-  --chart-1: #a78bfa;
-  --chart-2: #6d28d9;
-  --chart-3: #22c55e;
-  --chart-4: #3b82f6;
+  
+  --glow-blue: 0 0 40px rgba(59, 130, 246, 0.15);
   --glow-purple: 0 0 40px rgba(167, 139, 250, 0.15);
-  --glow-green: 0 0 40px rgba(34, 197, 94, 0.15);
 }
 
 * {
@@ -71,14 +68,14 @@ body {
 }
 
 /* ── Animations ────────────────────────────────────────────────── */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
+@keyframes fadeInBottom {
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: var(--glow-purple); }
-  50% { box-shadow: 0 0 60px rgba(167, 139, 250, 0.25); }
+  0%, 100% { box-shadow: var(--glow-blue); }
+  50% { box-shadow: 0 0 60px rgba(59, 130, 246, 0.25); }
 }
 
 @keyframes shimmer {
@@ -86,22 +83,8 @@ body {
   100% { background-position: 200% 0; }
 }
 
-@keyframes slide-up {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes count-up {
-  from { opacity: 0; transform: scale(0.8); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
-}
-
-.animate-slide-up {
-  animation: slide-up 0.6s ease-out forwards;
+.animate-page-load {
+  animation: fadeInBottom 0.6s ease-out forwards;
 }
 
 .animate-pulse-glow {
@@ -109,41 +92,27 @@ body {
 }
 
 .animate-shimmer {
-  background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.08), transparent);
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.08), transparent);
   background-size: 200% 100%;
   animation: shimmer 2s linear infinite;
 }
 
-.animate-count-up {
-  animation: count-up 0.4s ease-out forwards;
-}
-
-/* ── Stagger children ──────────────────────────────────────────── */
-.stagger-children > * {
-  opacity: 0;
-  animation: slide-up 0.5s ease-out forwards;
-}
-.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
-.stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
-.stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
-.stagger-children > *:nth-child(4) { animation-delay: 0.2s; }
-
 /* ── Glass Card ────────────────────────────────────────────────── */
 .glass-card {
-  background: rgba(24, 24, 27, 0.6);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(63, 63, 70, 0.4);
+  background: rgba(22, 27, 39, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius);
   transition: all 0.3s ease;
 }
+
 .glass-card:hover {
-  border-color: rgba(167, 139, 250, 0.3);
-  box-shadow: var(--glow-purple);
+  box-shadow: var(--glow-blue);
 }
 
 /* ── Gradient Text ─────────────────────────────────────────────── */
-.gradient-text {
-  background: linear-gradient(135deg, #a78bfa, #6d28d9, #3b82f6);
+.gradient-text-blue-purple {
+  background: linear-gradient(to right, #3b82f6, #a78bfa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -172,9 +141,9 @@ body {
   text-transform: uppercase;
 }
 .badge-simple {
-  background: rgba(34, 197, 94, 0.15);
-  color: #4ade80;
-  border: 1px solid rgba(34, 197, 94, 0.3);
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
 }
 .badge-medium {
   background: rgba(245, 158, 11, 0.15);

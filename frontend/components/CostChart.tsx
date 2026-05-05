@@ -67,7 +67,7 @@ export default function CostChart() {
   const CustomTooltip = ({ active, payload, label }: { active?: boolean; payload?: Array<{ name: string; value: number; color: string }>; label?: string }) => {
     if (!active || !payload) return null;
     return (
-      <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-3 shadow-xl text-xs">
+      <div className="glass-card p-3 shadow-xl text-xs border border-blue-500/20">
         <p className="text-zinc-400 mb-2 font-medium">{label}</p>
         {payload.map((entry, i) => (
           <div key={i} className="flex items-center gap-2 mb-1">
@@ -86,12 +86,13 @@ export default function CostChart() {
   return (
     <section
       aria-label="Cost savings chart"
-      className="glass-card p-6 animate-fade-in"
+      className="glass-card p-6 animate-page-load"
+      style={{ animationDelay: '0.4s' }}
     >
       <div className="flex items-center gap-3 mb-5">
-        <div className="p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+        <div className="p-2 rounded-xl bg-blue-500/10 border border-blue-500/20">
           <BarChart3
-            className="w-5 h-5 text-emerald-400"
+            className="w-5 h-5 text-blue-400"
             aria-hidden="true"
           />
         </div>
@@ -124,8 +125,8 @@ export default function CostChart() {
             >
               <defs>
                 <linearGradient id="costGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#a78bfa" stopOpacity={0.3} />
-                  <stop offset="95%" stopColor="#a78bfa" stopOpacity={0} />
+                  <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.5} />
+                  <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
                 </linearGradient>
                 <linearGradient id="effGrad" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#22c55e" stopOpacity={0.3} />
@@ -134,8 +135,8 @@ export default function CostChart() {
               </defs>
               <CartesianGrid
                 strokeDasharray="3 3"
-                stroke="rgba(63,63,70,0.3)"
-                vertical={false}
+                stroke="rgba(255,255,255,0.05)"
+                vertical={true}
               />
               <XAxis
                 dataKey="name"
@@ -155,11 +156,13 @@ export default function CostChart() {
                 type="monotone"
                 dataKey="costSaved"
                 name="Cost Saved (×10⁻³)"
-                stroke="#a78bfa"
-                strokeWidth={2}
+                stroke="#3b82f6"
+                strokeWidth={3}
                 fill="url(#costGrad)"
                 dot={false}
-                activeDot={{ r: 4, strokeWidth: 2 }}
+                activeDot={{ r: 5, strokeWidth: 2, stroke: "#3b82f6", fill: "#0f1117" }}
+                animationDuration={1500}
+                animationEasing="ease-out"
               />
               <Area
                 type="monotone"
@@ -169,7 +172,9 @@ export default function CostChart() {
                 strokeWidth={2}
                 fill="url(#effGrad)"
                 dot={false}
-                activeDot={{ r: 4, strokeWidth: 2 }}
+                activeDot={{ r: 4, strokeWidth: 2, stroke: "#22c55e", fill: "#0f1117" }}
+                animationDuration={1500}
+                animationEasing="ease-out"
               />
             </AreaChart>
           </ResponsiveContainer>

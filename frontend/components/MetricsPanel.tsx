@@ -9,6 +9,8 @@ import {
   TrendingUp,
   TrendingDown,
 } from "lucide-react";
+import CountUp from "react-countup";
+import { Sparklines, SparklinesLine } from "react-sparklines";
 
 interface Stats {
   total_requests: number;
@@ -27,6 +29,12 @@ const API_BASE = "";
 export default function MetricsPanel() {
   const [stats, setStats] = useState<Stats | null>(null);
   const [loading, setLoading] = useState(true);
+
+  // Mock data for sparklines
+  const mockSparklineData1 = [5, 10, 5, 20, 8, 15, 25, 20, 30, 25];
+  const mockSparklineData2 = [2, 5, 3, 8, 12, 10, 15, 20, 18, 22];
+  const mockSparklineData3 = [80, 85, 82, 88, 90, 85, 92, 95, 90, 94];
+  const mockSparklineData4 = [10, 20, 30, 25, 40, 35, 50, 45, 60, 70];
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -56,54 +64,70 @@ export default function MetricsPanel() {
       id: "tokens-saved",
       label: "Tokens Saved",
       value: stats?.compression_savings_tokens ?? 0,
-      format: (v: number) => v.toLocaleString(),
+      decimals: 0,
+      prefix: "",
+      suffix: "",
       icon: Zap,
       color: "text-violet-400",
       bgColor: "bg-violet-500/10",
       borderColor: "border-violet-500/20",
       trend: stats?.avg_efficiency_score ?? 0,
       trendLabel: "efficiency",
+      sparklineData: mockSparklineData1,
+      sparklineColor: "#a78bfa"
     },
     {
       id: "cost-saved",
       label: "Cost Saved",
       value: stats?.cost_saved_usd ?? 0,
-      format: (v: number) => `$${v.toFixed(4)}`,
+      decimals: 4,
+      prefix: "$",
+      suffix: "",
       icon: DollarSign,
       color: "text-emerald-400",
       bgColor: "bg-emerald-500/10",
       borderColor: "border-emerald-500/20",
       trend: stats?.cost_saved_usd ?? 0,
       trendLabel: "saved",
+      sparklineData: mockSparklineData2,
+      sparklineColor: "#10b981"
     },
     {
       id: "cache-hit-rate",
       label: "Cache Hit Rate",
       value: stats?.cache_hit_rate ?? 0,
-      format: (v: number) => `${v.toFixed(1)}%`,
+      decimals: 1,
+      prefix: "",
+      suffix: "%",
       icon: Target,
       color: "text-blue-400",
       bgColor: "bg-blue-500/10",
       borderColor: "border-blue-500/20",
       trend: stats?.cache_hits ?? 0,
       trendLabel: "hits",
+      sparklineData: mockSparklineData3,
+      sparklineColor: "#3b82f6"
     },
     {
       id: "total-requests",
       label: "Requests",
       value: stats?.total_requests ?? 0,
-      format: (v: number) => v.toLocaleString(),
+      decimals: 0,
+      prefix: "",
+      suffix: "",
       icon: Activity,
       color: "text-amber-400",
       bgColor: "bg-amber-500/10",
       borderColor: "border-amber-500/20",
       trend: stats?.total_tokens_in ?? 0,
       trendLabel: "tokens in",
+      sparklineData: mockSparklineData4,
+      sparklineColor: "#fbbf24"
     },
   ];
 
   return (
-    <section aria-label="Key metrics overview" className="stagger-children">
+    <section aria-label="Key metrics overview" className="animate-page-load">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {cards.map((card) => {
           const Icon = card.icon;
@@ -111,9 +135,9 @@ export default function MetricsPanel() {
             <div
               key={card.id}
               id={card.id}
-              className={`glass-card p-5 relative overflow-hidden group`}
+              className={`glass-card p-5 relative overflow-hidden group hover:-translate-y-1`}
               role="status"
-              aria-label={`${card.label}: ${card.format(card.value)}`}
+              aria-label={`${card.label}: ${card.value}`}
             >
               {/* Shimmer overlay on load */}
               {loading && (
@@ -126,24 +150,41 @@ export default function MetricsPanel() {
                 >
                   <Icon className={`w-5 h-5 ${card.color}`} aria-hidden="true" />
                 </div>
-                <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                  {card.trend > 0 ? (
-                    <TrendingUp className="w-3 h-3 text-emerald-400" aria-hidden="true" />
-                  ) : (
-                    <TrendingDown className="w-3 h-3 text-zinc-500" aria-hidden="true" />
-                  )}
-                  <span className="sr-only">Trend:</span>
-                  <span>
-                    {typeof card.trend === "number"
-                      ? card.trend.toLocaleString()
-                      : card.trend}{" "}
-                    {card.trendLabel}
-                  </span>
+                <div className="flex flex-col items-end gap-1">
+                  <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                    {card.trend > 0 ? (
+                      <TrendingUp className="w-3 h-3 text-emerald-400" aria-hidden="true" />
+                    ) : (
+                      <TrendingDown className="w-3 h-3 text-zinc-500" aria-hidden="true" />
+                    )}
+                    <span className="sr-only">Trend:</span>
+                    <span>
+                      {typeof card.trend === "number"
+                        ? card.trend.toLocaleString()
+                        : card.trend}{" "}
+                      {card.trendLabel}
+                    </span>
+                  </div>
+                  <div className="w-16 h-4 opacity-70 group-hover:opacity-100 transition-opacity">
+                    <Sparklines data={card.sparklineData} margin={0}>
+                      <SparklinesLine color={card.sparklineColor} style={{ strokeWidth: 2, fill: "none" }} />
+                    </Sparklines>
+                  </div>
                 </div>
               </div>
 
-              <p className="text-2xl font-bold tracking-tight animate-count-up">
-                {loading ? "—" : card.format(card.value)}
+              <p className="text-2xl font-bold tracking-tight">
+                {loading ? "—" : (
+                  <CountUp 
+                    start={0} 
+                    end={card.value} 
+                    decimals={card.decimals} 
+                    prefix={card.prefix} 
+                    suffix={card.suffix} 
+                    duration={1.5}
+                    separator=","
+                  />
+                )}
               </p>
               <p className="text-sm text-muted-foreground mt-1">{card.label}</p>
             </div>
