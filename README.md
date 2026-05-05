@@ -16,6 +16,8 @@
   <em>Compress → Cache → Route → Track</em>
 </p>
 
+## 🚀 Live Demo: https://tokenlens-bddi.onrender.com
+
 ---
 
 ## 🚨 The Problem
@@ -69,7 +71,7 @@ graph TB
     D --> F
     F --> E
     E --> A
-````
+```
 
 ---
 
@@ -147,7 +149,7 @@ npm run dev
 ### 🔁 Example Request
 
 ```bash
-curl -X POST http://localhost:8080/api/optimize \
+curl -X POST https://tokenlens-bddi.onrender.com/api/optimize \
   -H "Content-Type: application/json" \
   -H "X-API-Key: your-auth-key" \
   -d '{
