@@ -11,6 +11,13 @@ import pytest
 import pytest_asyncio
 from httpx import ASGITransport, AsyncClient
 
+from backend.api.routes import init_components
+from backend.core.compressor import PromptCompressor
+from backend.core.semantic_cache import SemanticCache  
+from backend.core.model_router import ModelRouter
+from backend.core.cost_tracker import CostTracker
+from backend.core.gemini_client import GeminiClient
+
 
 # Set test env vars before importing the app
 os.environ["TOKEN_LENS_API_KEY"] = "test-api-key-12345"
@@ -26,6 +33,16 @@ async def client():
 
     with patch("backend.core.semantic_cache.SentenceTransformer", return_value=mock_model):
         from backend.main import app
+        
+        # Initialize the global components before tests run
+        init_components(
+            compressor=PromptCompressor(),
+            cache=SemanticCache(),
+            model_router=ModelRouter(),
+            cost_tracker=CostTracker(),
+            gemini_client=GeminiClient()
+        )
+        
         transport = ASGITransport(app=app)
         async with AsyncClient(transport=transport, base_url="http://test") as ac:
             yield ac

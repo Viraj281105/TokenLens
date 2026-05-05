@@ -12,7 +12,7 @@ import os
 import re
 from typing import Optional
 
-import google.generativeai as genai
+import google.genai as genai
 
 logger = logging.getLogger("tokenlens.gemini")
 
