@@ -33,7 +33,7 @@ export default function MetricsPanel() {
       try {
         const res = await fetch(`${API_BASE}/api/stats`, {
           headers: {
-            "X-API-Key": process.env.NEXT_PUBLIC_API_KEY || "",
+            "X-API-Key": process.env.NEXT_PUBLIC_API_KEY || 'tokenlens2026',
           },
         });
         if (res.ok) {

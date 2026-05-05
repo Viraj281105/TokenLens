@@ -42,7 +42,13 @@ COPY backend/ ./backend/
 COPY --from=frontend-builder /app/frontend/out ./frontend/out
 
 # Create data directory with proper permissions
-RUN mkdir -p /app/data && chown -R tokenlens:tokenlens /app
+RUN mkdir -p /app/data && \
+    mkdir -p /home/tokenlens/.cache/huggingface && \
+    chown -R tokenlens:tokenlens /app && \
+    chown -R tokenlens:tokenlens /home/tokenlens
+
+# Pre-download the sentence-transformers model at build time
+RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
 
 # Environment
 ENV PORT=8080

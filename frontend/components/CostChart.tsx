@@ -39,7 +39,7 @@ export default function CostChart() {
       try {
         const res = await fetch(`${API_BASE}/api/history?last_n=20`, {
           headers: {
-            "X-API-Key": process.env.NEXT_PUBLIC_API_KEY || "",
+            "X-API-Key": process.env.NEXT_PUBLIC_API_KEY || 'tokenlens2026',
           },
         });
         if (res.ok) {
@@ -64,7 +64,7 @@ export default function CostChart() {
     tokens: entry.original_tokens - entry.compressed_tokens,
   }));
 
-  const CustomTooltip = ({ active, payload, label }: {active?: boolean; payload?: Array<{name: string; value: number; color: string}>; label?: string}) => {
+  const CustomTooltip = ({ active, payload, label }: { active?: boolean; payload?: Array<{ name: string; value: number; color: string }>; label?: string }) => {
     if (!active || !payload) return null;
     return (
       <div className="bg-zinc-900 border border-zinc-700 rounded-lg p-3 shadow-xl text-xs">

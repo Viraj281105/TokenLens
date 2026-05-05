@@ -55,7 +55,7 @@ export default function ChatPlayground() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "X-API-Key": process.env.NEXT_PUBLIC_API_KEY || "",
+          "X-API-Key": process.env.NEXT_PUBLIC_API_KEY || 'tokenlens2026',
         },
         body: JSON.stringify({ prompt: prompt.trim() }),
       });
