@@ -20,7 +20,7 @@ class TestModelRouter:
     """Tests for the ModelRouter."""
 
     def test_simple_query_routes_to_flash(self, router: ModelRouter) -> None:
-        """Short, simple queries should route to gemini-2.0-flash."""
+        """Short, simple queries should route to gemini-1.5-flash."""
         result = router.route("What is Python?", token_count=5)
 
         assert result.selected_model == ModelName.FLASH

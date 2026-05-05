@@ -25,8 +25,8 @@ class ComplexityTier(str, Enum):
 
 class ModelName(str, Enum):
     """Supported Gemini model identifiers."""
-    FLASH = "gemini-2.0-flash"
-    PRO = "gemini-2.5-pro-preview-05-06"
+    FLASH = "gemini-1.5-flash"
+    PRO = "gemini-1.5-pro"
 
 
 # ── Request Schemas ────────────────────────────────────────────────────

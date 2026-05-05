@@ -168,7 +168,7 @@ curl -X POST https://tokenlens-bddi.onrender.com/api/optimize \
   "compressed_tokens": 18,
   "compression_ratio": 0.72,
   "cache_hit": false,
-  "model_used": "gemini-2.0-flash",
+  "model_used": "gemini-1.5-flash",
   "complexity_tier": "SIMPLE",
   "estimated_cost": 0.00000135,
   "cost_saved": 0.00009375,
